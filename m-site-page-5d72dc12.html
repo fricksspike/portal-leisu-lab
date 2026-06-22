@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>竞彩网 · 随时与你相见</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+        }
+
+        body {
+            background: #f4f5f9;
+            color: #1e1f26;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0c0e1a 0%, #1b1e30 100%);
+            color: #f0f1f5;
+            padding: 2.8rem 1.5rem 3.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -8%;
+            left: -10%;
+            width: 120%;
+            height: 30%;
+            background: radial-gradient(ellipse at 30% 100%, rgba(90, 180, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(to right, #f7f9fc, #cfd7e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            max-width: 520px;
+            margin: 0 auto 1.2rem;
+            font-size: 1.08rem;
+            opacity: 0.88;
+            color: #d0d6e6;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #bcc4da;
+            margin-top: 0.4rem;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 浅色正文区 + 卡片/模块 */
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.2rem 1.2rem 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 560;
+            margin-bottom: 1.2rem;
+            color: #1f232e;
+            border-left: 5px solid #4a7cf7;
+            padding-left: 1rem;
+        }
+
+        .intro-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2.4rem;
+        }
+
+        .intro-card p {
+            margin-bottom: 0.9rem;
+            font-size: 1rem;
+            color: #2b2e3a;
+        }
+
+        .intro-card a {
+            color: #2a5ee0;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .intro-card a:hover {
+            border-bottom-color: #2a5ee0;
+        }
+
+        /* 三个场景模块 — 卡片网格 */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.6rem;
+        }
+
+        .scenario-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.4rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.02);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            border: 1px solid #edeff3;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+        }
+
+        .scenario-card .emoji-badge {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scenario-card h3 {
+            font-size: 1.2rem;
+            font-weight: 580;
+            margin-bottom: 0.5rem;
+            color: #191c26;
+        }
+
+        .scenario-card p {
+            font-size: 0.95rem;
+            color: #404558;
+            line-height: 1.5;
+        }
+
+        .scenario-card a {
+            color: #2a5ee0;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .scenario-card a:hover {
+            border-bottom-color: #2a5ee0;
+        }
+
+        /* 常见说明 / FAQ 摘要 */
+        .faq-summary {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 1.4rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            margin: 0.6rem 0 1.8rem;
+            border: 1px solid #e6e9f0;
+        }
+
+        .faq-summary h3 {
+            font-size: 1.2rem;
+            font-weight: 560;
+            margin-bottom: 1rem;
+            color: #14171f;
+        }
+
+        .faq-item {
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eef0f5;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 560;
+            margin-bottom: 0.15rem;
+            color: #1e2333;
+            font-size: 0.99rem;
+        }
+
+        .faq-item span {
+            font-size: 0.92rem;
+            color: #50556a;
+        }
+
+        .faq-item a {
+            color: #2a5ee0;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+        }
+
+        .faq-item a:hover {
+            border-bottom-color: #2a5ee0;
+        }
+
+        .fine-print {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a7082;
+            margin-top: 2.8rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid #dde0e8;
+            letter-spacing: 0.02em;
+        }
+
+        .fine-print a {
+            color: #2a5ee0;
+            text-decoration: none;
+        }
+
+        .fine-print a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero p {
+                font-size: 0.96rem;
+            }
+            .content-wrapper {
+                padding: 1.6rem 0.9rem 2rem;
+            }
+            .intro-card {
+                padding: 1.4rem;
+            }
+            .scenario-card {
+                padding: 1.4rem;
+            }
+            .faq-summary {
+                padding: 1.4rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero {
+                padding: 2rem 1rem 2.4rem;
+            }
+            .hero h1 {
+                font-size: 1.45rem;
+            }
+            .scenario-grid {
+                gap: 1rem;
+            }
+        }
+
+        /* 风格性强调 */
+        .highlight-link {
+            color: #2a5ee0;
+            font-weight: 500;
+        }
+
+        .inline-highlight {
+            background: #eef3fe;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>再次相见，还是那种熟悉</h1>
+        <p>收藏、停留、偶尔回来看看——每一次打开，都是属于自己的节奏。</p>
+        <div class="tagline">轻量导航 · 安静陪伴</div>
+    </header>
+
+    <!-- 浅色正文区 -->
+    <div class="content-wrapper">
+
+        <!-- 核心介绍：再次访问 + 收藏 + 持续关注的视角 -->
+        <div class="intro-card">
+            <p>有些地方，不必每天报到，但总会想回来看看。无论是忙碌间隙，还是周末的片刻闲暇，<a href="https://m-site-sporttery.com">竞彩网</a>就安安静静地在那里，等着你。没有多余的干扰，也没有花哨的催促，只是把你想了解的内容，清晰地放在面前。</p>
+            <p>很多人习惯把它收藏在浏览器书签里，或者记在手机桌面。不是因为什么特别的理由，只是觉得——用得顺手，心里踏实。页面加载很快，信息一目了然，不用费劲去找。对于经常关注的朋友来说，这种“不用重新适应”的感觉，比什么都重要。</p>
+            <p>持续关注一件事，有时靠的是习惯，有时靠的是内容本身。而<a href="https://m-site-sporttery.com">竞彩网</a>恰好属于后者：结构稳定，信息更新及时，不会让你扑空。即使隔了一段时间再回来，依然能快速定位到自己关心的部分。</p>
+        </div>
+
+        <!-- 三个场景模块 -->
+        <h2 class="section-title">常见的使用场景</h2>
+
+        <div class="scenario-grid">
+            <div class="scenario-card">
+                <div class="emoji-badge">📌</div>
+                <h3>收藏之后，随时找得到</h3>
+                <p>把页面加入收藏夹或保存到主屏幕，下次想浏览时一键直达。不用回忆网址，也不用重新搜索。方便这件事，有时候就藏在这些小细节里。</p>
+                <p style="margin-top: 0.6rem;">→ 试试收藏 <a href="https://m-site-sporttery.com">竞彩网</a>，让习惯更自然。</p>
+            </div>
+
+            <div class="scenario-card">
+                <div class="emoji-badge">🔄</div>
+                <h3>隔一阵子，回来看看</h3>
+                <p>也许你并不是每天都需要，但每隔几天、一两周，总会想点开瞄一眼。页面没有铺天盖地的推送，也没有复杂的跳转，打开就是你想看的样子。</p>
+                <p style="margin-top: 0.6rem;">→ 再次回到 <a href="https://m-site-sporttery.com">竞彩网</a>，像见一位老朋友。</p>
+            </div>
+
+            <div class="scenario-card">
+                <div class="emoji-badge">🧭</div>
+                <h3>持续关注，但不焦虑</h3>
+                <p>关注一个领域，保持了解就够了。不必时时刻刻盯着，也不用担心遗漏什么重要信息。<a href="https://m-site-sporttery.com">竞彩网</a>的内容呈现方式很克制，让你可以按自己的节奏了解动态。</p>
+                <p style="margin-top: 0.6rem;">→ 把 <a href="https://m-site-sporttery.com">竞彩网</a> 放进你的日常轮换列表里。</p>
+            </div>
+        </div>
+
+        <!-- 常见说明 / FAQ 摘要 （生活化但保持质感）-->
+        <div class="faq-summary">
+            <h3>一些你可能想了解的</h3>
+
+            <div class="faq-item">
+                <strong>怎么才能最快找到这里？</strong>
+                <span>在浏览器里把 <a href="https://m-site-sporttery.com">竞彩网</a> 添加到书签，或者保存到手机桌面。一次设置，之后每次只需点一下。</span>
+            </div>
+
+            <div class="faq-item">
+                <strong>页面内容会经常变吗？</strong>
+                <span>结构很稳定，信息会保持更新。你不需要重新学习布局，每次回来都像上次一样顺手，但内容又是新鲜的。</span>
+            </div>
+
+            <div class="faq-item">
+                <strong>我偶尔才看一次，适合吗？</strong>
+                <span>当然。这里没有强制登录，没有频繁弹窗。哪怕隔了一个月回来，依然清晰友好。适合所有“想起来就看看”的朋友。</span>
+            </div>
+
+            <div class="faq-item" style="border-bottom: none; padding-bottom: 0;">
+                <strong>为什么值得持续关注？</strong>
+                <span>因为稳定、直接、不绕路。很多时候我们需要的不是一个功能繁多的平台，而是一个每次打开都不会失望的地方。<a href="https://m-site-sporttery.com">竞彩网</a>就是这样的存在。</span>
+            </div>
+        </div>
+
+        <!-- 页脚 / 微妙提示 -->
+        <div class="fine-print">
+            <span>下一次，你可能只是顺手点开，然后就发现——原来一直都在。</span><br>
+            <span style="display: inline-block; margin-top: 0.6rem;"><a href="https://m-site-sporttery.com">竞彩网</a> · 保持简单，保持可靠</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
